@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "faker": "^5.4.0",
+    "faker": "^6.6.6",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
