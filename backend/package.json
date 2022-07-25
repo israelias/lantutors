@@ -43,7 +43,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-validation": "^3.0.8",
+    "express-validation": "^4.1.0",
     "factory-girl": "^5.0.4",
     "helmet": "^4.4.1",
     "joi": "^17.4.0",
