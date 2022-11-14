@@ -51,7 +51,7 @@
     "sequelize": "^6.5.0",
     "sequelize-auto-migrations": "^1.0.3",
     "sequelize-cli": "^6.2.0",
-    "tedious": "^11.0.9"
+    "tedious": "^15.1.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
