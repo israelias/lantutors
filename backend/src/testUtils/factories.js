@@ -18,20 +18,16 @@ factory.define('Student', db.Student, {
 });
 
 factory.define('TutorStudent', db.TutorStudent, {
-  tutor: factory.assocMany('Tutor', 10, 'email'),
-  student: factory.assocMany('Student', 10, 'email'),
+  tutor: factory.assoc('Tutor', 'email'),
+  student: factory.assoc('Student', 'email'),
   active: faker.datatype.boolean(),
 });
 
 factory.define('StudentNotification', db.StudentNotification, {
-  tutor: factory.assocMany('Tutor', 10, 'email'),
-  student: factory.assocMany('Student', 10, 'email'),
+  tutor: factory.assoc('Tutor', 'email'),
+  student: factory.assoc('Student', 'email'),
   title: faker.lorem.words(3),
-  message:
-    faker.hacker.phrase() +
-    faker.internet.email() +
-    faker.hacker.phrase() +
-    faker.internet.email(),
+  message: faker.hacker.phrase() + faker.internet.email() + faker.hacker.phrase() + faker.internet.email(),
 });
 
 module.exports = factory;
