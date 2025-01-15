@@ -10,6 +10,6 @@ services:
     # restart: always # ignored when deploying a stack in swarm mode or kubernetes
     environment:
       # NOTE: You should consider using aws rds when you are deploying to the cloud.
-      MYSQL_ROOT_PASSWORD: CzmRkxmRrpBHOv92k8uRSvUBMGjsZ5zpZ53xk5jpZ08
+      MYSQL_ROOT_PASSWORD: your_secure_password
 volumes:
   db-data-mysql-2:

@@ -4,6 +4,33 @@ node_modules
 .env.local
 access.log
 package-lock.json
-yarn.lock
 yarn-error.log
-.vscode
+
+# Ignore all files in the .vscode directory
+.vscode/*
+
+# Except for the following files
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
+# Ignore all files in the .idea directory
+.idea/*
+
+# Allow versioning of specific project configuration files
+!.idea/vcs.xml
+!.idea/encodings.xml
+!.idea/codeStyles/codeStyleConfig.xml
+!.idea/codeStyles/Project.xml
+!.idea/dictionaries/
+!.idea/copyright/
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/sqldialects.xml
+
+# Ignore workspace-related and other user-specific files
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/shelf/
