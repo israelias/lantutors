@@ -20,16 +20,11 @@ class GetCommonStudents {
     /**
      * Check if there's a query in the url
      */
-
     if (!this.tutor) {
       return {
         message: 'Validation Failed',
         code: 400,
       };
-      // res.json({
-      //   message: 'Validation Failed',
-      //   code: 400,
-      // });
     }
     const query = req.query.tutor;
     /**
@@ -65,12 +60,6 @@ class GetCommonStudents {
         message: 'Common Students returned',
         code: 200,
       };
-      // res.json({
-      //   students: students.map((student) => student.email),
-      //   message: 'Common Students returned',
-      //   code: 200,
-      // });
-
       /**
        * Else there are otherwise no queries in the url
        */
@@ -97,11 +86,6 @@ class GetCommonStudents {
         message: 'Common Students returned',
         code: 200,
       };
-      // res.json({
-      //   students: students.map((student) => student.email),
-      //   message: 'Common Students returned',
-      //   code: 200,
-      // });
     }
   }
 }

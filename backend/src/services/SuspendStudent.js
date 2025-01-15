@@ -52,7 +52,7 @@ class SuspendStudent {
        */
       return {
         student: student.email,
-        messsage: `${student.email.split('@')[0]} has been suspended`,
+        message: `${student.email.split('@')[0]} has been suspended`,
         code: 200,
       };
     } else {
@@ -75,7 +75,7 @@ class SuspendStudent {
        */
       return {
         student: student.email,
-        messsage: `${
+        message: `${
           student.email.split('@')[0]
         }'s suspension has been lifted`,
         code: 200,

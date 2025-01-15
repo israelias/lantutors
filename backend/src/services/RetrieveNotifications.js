@@ -39,9 +39,9 @@ class RetrieveNotifications {
       };
     }
     /**
-     * Initialize an empty array of to-be recipients
+     * Initialize a set to store unique student emails
      */
-    const allRecipients = [];
+    const allRecipients = new Set();
     /**
      * Get a list of student emails from the request
      */
@@ -50,18 +50,16 @@ class RetrieveNotifications {
      * Get a list of all existing students already assigned to this tutor,
      * as they should receive this notification by default, if they are not suspended
      */
-    const unsuspendedStudents =
-      await getAllUnsuspendedStudentsByTutor(this.tutor);
+    const unsuspendedStudents = await getAllUnsuspendedStudentsByTutor(this.tutor);
     /**
      * If we are left with more than one unsuspended student...
      */
     if (unsuspendedStudents.students.length > 0) {
       /**
-       * Add them to the `allRecipients` array
+       * Add them to the `allRecipients` set
        */
-      allRecipients.push(
-        ...unsuspendedStudents.students.map((student) => student)
-      );
+      unsuspendedStudents.students.forEach((student) => allRecipients.add(student));
+
     }
     /**
      * If there are more than one students mentioned in the notification
@@ -70,29 +68,22 @@ class RetrieveNotifications {
       /**
        * Reduce the list of mentioned students to ones that are not suspended
        */
-      const approved = await getAllUnsuspendedStudentsByEmails(
-        mentionedStudents
-      );
+      const approved = await getAllUnsuspendedStudentsByEmails(mentionedStudents);
       /**
        * If we are left with more than one unsuspended student...
        */
       if (approved.students.length > 0) {
         /**
-         * Add them to the `allRecipients` array
+         * Add them to the `allRecipients` Set
          */
-        allRecipients.push(
-          ...approved.students.map((student) => student)
-        );
+        approved.students.forEach((student) => allRecipients.add(student));
+
       }
     }
     /**
-     * Register the a studentnotification with the recipients, tutor, and notification message
+     * Register a studentnotification with the email recipients, tutor, and notification message
      */
-    for (const recipient in allRecipients) {
-      /**
-       * Identify one email from the array of recipients
-       */
-      const email = allRecipients[recipient];
+    for (const email of allRecipients) {
       /**
        * Create a n:m StudentNotification record for each student
        */
@@ -108,7 +99,7 @@ class RetrieveNotifications {
 
     return {
       tutor: this.tutor,
-      recipients: allRecipients.map((student) => student),
+      recipients: Array.from(allRecipients),
       message: 'Notification posted',
       code: 200,
     };
