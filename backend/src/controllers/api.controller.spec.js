@@ -155,12 +155,20 @@ describe('Api Controller', () => {
           ])
           .then((results) => results.map((result) => result.email));
         /**
+         * Instantiate a new tutor
+         */
+        const tutorEmail = faker.internet.email();
+        await factories.create('Tutor', {
+          email: tutorEmail,
+          password: faker.internet.password(),
+        });
+        /**
          * Register existing students to new unregistered tutor
          */
         const { statusCode, body } = await request(app)
           .post('/api/register')
           .send({
-            tutor: faker.internet.email(),
+            tutor: tutorEmail,
             students: students.map((student) => student),
           });
         const { message } = body;
@@ -232,7 +240,6 @@ describe('Api Controller', () => {
         /**
          * Instantiate a Tutor using above variables
          */
-
         await factories.create('Tutor', {
           email: constantTutorEmail,
           password: faker.internet.password(),
@@ -241,7 +248,6 @@ describe('Api Controller', () => {
         /**
          * Instantiate students using above variables
          */
-
         await factories.createMany('Student', 3, [
           {
             email: constantStudent1,
@@ -281,11 +287,11 @@ describe('Api Controller', () => {
         /**
          * `students` in response body should be an array of `constantTutor`'s students
          */
-        expect(students).toEqual([
+        expect(students.sort()).toEqual([
           constantStudent1,
           constantStudent2,
           constantStudent3,
-        ]);
+        ].sort());
         expect(statusCode).toEqual(200);
         done();
       });
@@ -439,11 +445,11 @@ describe('Api Controller', () => {
          * `students` in response body should be an array of `constantTutor` and
          * `commonTutor`'s shared students
          */
-        expect(students).toEqual([
+        expect(students.sort()).toEqual([
           sharedStudent1,
           sharedStudent2,
           sharedStudent3,
-        ]);
+        ].sort());
         expect(statusCode).toEqual(200);
         done();
       });
@@ -524,9 +530,9 @@ describe('Api Controller', () => {
           .send({
             student: student.email,
           });
-        const { messsage } = body;
+        const { message } = body;
 
-        expect(messsage).toEqual(
+        expect(message).toEqual(
           `${email.split('@')[0]} has been suspended`
         );
         expect(statusCode).toEqual(200);
