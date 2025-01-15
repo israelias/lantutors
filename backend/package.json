@@ -45,7 +45,7 @@
     "express": "^4.17.1",
     "express-validation": "^3.0.8",
     "factory-girl": "^5.0.4",
-    "helmet": "^4.4.1",
+    "helmet": "^8.0.0",
     "joi": "^17.4.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0",
