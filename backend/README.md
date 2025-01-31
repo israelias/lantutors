@@ -13,6 +13,28 @@ Required softwares:
 1. NodeJS
 2. MySQL
 
+## Local Database Setup
+1. Create a local database named `development-student-management` and `test-student-management`
+   * You can do this via the MySQL CLI or a GUI like MySQL Workbench.
+   * Install mysql via `brew install mysql` or download the installer from the [MySQL website](https://dev.mysql.com/downloads/mysql/).
+   * Run `mysql -u root -p` to login to the MySQL CLI.
+2. Create a `.env` file in the root folder with the following format:
+``` shell
+APP_PORT=4000
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=password
+DB_NAME=development-student-management
+DB_DIALECT=mysql
+DB_PORT=3306
+APP_HOST=localhost
+NODE_ENV=development
+```
+3. Run `yarn db:create` to create the database.
+4. Run `yarn db:migrate` to run the migrations.
+5. Run `yarn dev` to start the server.
+
+
 If you dont have MYSQL, you can run a local db server via Docker using something similar to the `docker-compose.yml` in this repo and run `docker-compose up`
 
 ## Methods
